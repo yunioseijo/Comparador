@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Comparador de Decisiones</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <nav class="topbar" aria-label="Navegacion principal">
+        <div class="brand">
+          <span class="brand-mark">C</span>
+          <span>Comparador</span>
+        </div>
+        <button class="ghost-button" id="resetButton" type="button">Reiniciar</button>
+      </nav>
+
+      <section class="hero-grid">
+        <div>
+          <p class="eyebrow">Decision con pesos, datos y claridad</p>
+          <h1>Compara opciones dificiles sin perderte en opiniones sueltas.</h1>
+          <p class="hero-copy">
+            Usa criterios dinamicos, escala de -5 a 5, pesos personalizados y graficas para ver que opcion gana y por que.
+          </p>
+        </div>
+        <form class="setup-card" id="setupForm">
+          <label for="comparisonTitle">Nombre de la comparacion</label>
+          <input id="comparisonTitle" name="comparisonTitle" type="text" autocomplete="off" />
+
+          <label for="templateSelect">Plantilla</label>
+          <select id="templateSelect" name="templateSelect">
+            <option value="house">Casa / Mudanza</option>
+            <option value="car">Auto</option>
+            <option value="phone">Movil</option>
+            <option value="laptop">Laptop</option>
+            <option value="blank">Vacia</option>
+          </select>
+
+          <button class="primary-button" type="submit">Aplicar plantilla</button>
+        </form>
+      </section>
+    </header>
+
+    <main class="app-shell">
+      <section class="panel actions-panel" aria-labelledby="quickActionsTitle">
+        <div>
+          <p class="section-kicker">MVP</p>
+          <h2 id="quickActionsTitle">Construye tu comparacion</h2>
+        </div>
+        <form class="inline-form" id="itemForm">
+          <input id="itemName" type="text" placeholder="Nueva opcion, ej. Casa B" required />
+          <button type="submit">Agregar opcion</button>
+        </form>
+        <form class="inline-form" id="criterionForm">
+          <input id="criterionName" type="text" placeholder="Nuevo criterio, ej. Ventilacion" required />
+          <input id="criterionWeight" type="number" min="0" max="5" step="1" value="3" aria-label="Peso" />
+          <button type="submit">Agregar criterio</button>
+        </form>
+      </section>
+
+      <section class="content-grid">
+        <section class="panel table-panel" aria-labelledby="tableTitle">
+          <div class="panel-heading">
+            <div>
+              <p class="section-kicker">Escala -5 a 5</p>
+              <h2 id="tableTitle">Matriz editable</h2>
+            </div>
+            <p class="hint">Peso 0 no suma. Cada celda se multiplica por el peso del criterio.</p>
+          </div>
+          <div class="table-wrap" id="comparisonTable"></div>
+        </section>
+
+        <aside class="panel ranking-panel" aria-labelledby="rankingTitle">
+          <p class="section-kicker">Resultado</p>
+          <h2 id="rankingTitle">Ranking</h2>
+          <div id="rankingList" class="ranking-list"></div>
+        </aside>
+      </section>
+
+      <section class="charts-grid" aria-label="Graficas de comparacion">
+        <article class="panel chart-card">
+          <div class="panel-heading">
+            <div>
+              <p class="section-kicker">Total</p>
+              <h2>Puntaje global</h2>
+            </div>
+          </div>
+          <canvas id="scoreChart"></canvas>
+        </article>
+
+        <article class="panel chart-card">
+          <div class="panel-heading">
+            <div>
+              <p class="section-kicker">Perfil</p>
+              <h2>Radar por criterios</h2>
+            </div>
+          </div>
+          <canvas id="radarChart"></canvas>
+        </article>
+      </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
